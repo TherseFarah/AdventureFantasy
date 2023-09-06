@@ -10,7 +10,7 @@ public class Upgrades : ScriptableObject
     public double upgradeValue;
     public double price;
     public bool isBought;
-
+    Button upgradesButton;
 
     public void ApplyUpgrade(Button upgradesButton)
     {
@@ -23,9 +23,17 @@ public class Upgrades : ScriptableObject
                     store.firstStoreProfit *= upgradeValue;
                 }
                 GameManager.Instance.AddBalance(-price);
+                this.upgradesButton = upgradesButton;
                 upgradesButton.gameObject.SetActive(false);
                 isBought = true;
             }
         }
+    }
+
+    public void UnapplyUpgrade()
+    {
+        isBought = false;
+        upgradesButton.gameObject.SetActive(true);
+        upgradesButton.interactable = GameManager.Instance.CanBuy(upgradeValue);
     }
 }

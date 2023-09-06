@@ -381,7 +381,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrade: {fileID: 11400000, guid: 5aa79cea3241826468f48714e9f50baa, type: 2}
-  popup: {fileID: 1351850246}
 --- !u!114 &37067078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1970,7 +1969,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrade: {fileID: 11400000, guid: c6a46074f40ed534c97330dfce11ac20, type: 2}
-  popup: {fileID: 1351850246}
 --- !u!114 &149092179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2216,7 +2214,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrade: {fileID: 11400000, guid: 1b9341a600ea6dc4581f7ce6174e4abd, type: 2}
-  popup: {fileID: 1351850246}
 --- !u!114 &157686734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2814,7 +2811,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   store: {fileID: 11400000, guid: 9311157143726924f83b9727ca3a4d23, type: 2}
-  popup: {fileID: 629960179}
 --- !u!82 &170316760
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3992,7 +3988,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   store: {fileID: 11400000, guid: db747ba7a862ab94ebc2e6822d256bf1, type: 2}
-  popup: {fileID: 629960179}
 --- !u!82 &276249080
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4144,7 +4139,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrade: {fileID: 11400000, guid: 86f617123a767ab4689afaace9cf1dcb, type: 2}
-  popup: {fileID: 1351850246}
 --- !u!114 &276679948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5196,7 +5190,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   store: {fileID: 11400000, guid: c9306c9a95d813d4ea21550884ee1345, type: 2}
-  popup: {fileID: 629960179}
 --- !u!82 &363718819
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6386,7 +6379,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrade: {fileID: 11400000, guid: 22edd9f4f20a70f419732193de3bd2d5, type: 2}
-  popup: {fileID: 1351850246}
 --- !u!114 &501701102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7007,7 +6999,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrade: {fileID: 11400000, guid: 9149ef74a3d71a2488bbd598a5265a78, type: 2}
-  popup: {fileID: 1351850246}
 --- !u!114 &544053774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7387,7 +7378,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrade: {fileID: 11400000, guid: 4a7113c3becf0bc4f86f42ff27a9d83d, type: 2}
-  popup: {fileID: 1351850246}
 --- !u!114 &556762874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8851,7 +8841,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   store: {fileID: 11400000, guid: b3a2f7016abc1ec4aa9863e75f7de0ab, type: 2}
-  popup: {fileID: 629960179}
 --- !u!82 &716900283
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9500,7 +9489,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrade: {fileID: 11400000, guid: 0b50b6d1f5ed42347a0a63a0c41b9a96, type: 2}
-  popup: {fileID: 1351850246}
 --- !u!114 &773324220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11325,7 +11313,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrade: {fileID: 11400000, guid: c2d212ebab538f144ad241e166b3a48b, type: 2}
-  popup: {fileID: 1351850246}
 --- !u!114 &957648773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11910,7 +11897,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrade: {fileID: 11400000, guid: 545ad29f23372904ebdc5b1c90cdc39f, type: 2}
-  popup: {fileID: 1351850246}
 --- !u!114 &973451824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13961,7 +13947,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrade: {fileID: 11400000, guid: 5378920039302864b85a59d5192e688d, type: 2}
-  popup: {fileID: 1351850246}
 --- !u!114 &1215227593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14530,6 +14515,8 @@ GameObject:
   - component: {fileID: 1238286816}
   - component: {fileID: 1238286817}
   - component: {fileID: 1238286818}
+  - component: {fileID: 1238286819}
+  - component: {fileID: 1238286820}
   m_Layer: 5
   m_Name: GameCanvas
   m_TagString: Untagged
@@ -14688,6 +14675,34 @@ MonoBehaviour:
   sessionEarnings: 0
   totalEarnings: 0
   goblinInvestors: 0
+--- !u!114 &1238286819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238286809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21fdd2209874927429ef1dd9995930f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allUpgrades: []
+  popup: {fileID: 1351850246}
+--- !u!114 &1238286820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238286809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c90d1ee397007434380dbd0f670d4a10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allManagers: []
+  popup: {fileID: 629960179}
 --- !u!1 &1239891358
 GameObject:
   m_ObjectHideFlags: 0
@@ -16280,7 +16295,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   store: {fileID: 11400000, guid: 00acc102568447347b4556ffe5a20582, type: 2}
-  popup: {fileID: 629960179}
 --- !u!82 &1363646418
 AudioSource:
   m_ObjectHideFlags: 0
@@ -17868,7 +17882,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrade: {fileID: 11400000, guid: 7a2befbdef90c3449a66d8f3b8a97287, type: 2}
-  popup: {fileID: 1351850246}
 --- !u!114 &1523353283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18663,7 +18676,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrade: {fileID: 11400000, guid: ed429266813625a40be3661628b9afa0, type: 2}
-  popup: {fileID: 1351850246}
 --- !u!114 &1550982674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19435,7 +19447,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   store: {fileID: 11400000, guid: a11e0059050e68e40a8a49f51ce93224, type: 2}
-  popup: {fileID: 629960179}
 --- !u!82 &1597265329
 AudioSource:
   m_ObjectHideFlags: 0
@@ -19816,7 +19827,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrade: {fileID: 11400000, guid: 159b3c6d2edef2743abeec0ca109e39c, type: 2}
-  popup: {fileID: 1351850246}
 --- !u!82 &1656508325
 AudioSource:
   m_ObjectHideFlags: 0
@@ -20482,7 +20492,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   store: {fileID: 11400000, guid: 92f64a44c41620140a7456ca5d1a1b77, type: 2}
-  popup: {fileID: 629960179}
 --- !u!82 &1730225851
 AudioSource:
   m_ObjectHideFlags: 0
@@ -20728,7 +20737,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrade: {fileID: 11400000, guid: 5579b012bb43f434eaf3c461bd2086d1, type: 2}
-  popup: {fileID: 1351850246}
 --- !u!82 &1731845493
 AudioSource:
   m_ObjectHideFlags: 0
@@ -21098,7 +21106,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrade: {fileID: 11400000, guid: a44fc2e5cde6042409253cccdb1d0438, type: 2}
-  popup: {fileID: 1351850246}
 --- !u!114 &1759246462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22510,7 +22517,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   store: {fileID: 11400000, guid: 1649bff7a1b8b2848b73e8fb38151a92, type: 2}
-  popup: {fileID: 629960179}
 --- !u!82 &1901486836
 AudioSource:
   m_ObjectHideFlags: 0
@@ -22797,7 +22803,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrade: {fileID: 11400000, guid: 2dfba20e9fecd9a40a212d3c40b72945, type: 2}
-  popup: {fileID: 1351850246}
 --- !u!114 &1916276573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23199,7 +23204,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrade: {fileID: 11400000, guid: 8d5dea42b917ab748a17500adeed9ffa, type: 2}
-  popup: {fileID: 1351850246}
 --- !u!114 &1974568843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23539,7 +23543,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   store: {fileID: 11400000, guid: 65c10d92641ad0144ab978be2913a719, type: 2}
-  popup: {fileID: 629960179}
 --- !u!82 &1974761560
 AudioSource:
   m_ObjectHideFlags: 0
@@ -23831,7 +23834,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrade: {fileID: 11400000, guid: 12ce64693f4878c41a7a3a8d189df69b, type: 2}
-  popup: {fileID: 1351850246}
 --- !u!114 &1982036967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24077,7 +24079,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrade: {fileID: 11400000, guid: 495892781ccc58246bf6ce1ad855aba6, type: 2}
-  popup: {fileID: 1351850246}
 --- !u!114 &1983095550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25355,7 +25356,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   store: {fileID: 11400000, guid: a0b7cfb3746283a44b5860d681730c49, type: 2}
-  popup: {fileID: 629960179}
 --- !u!82 &2087992340
 AudioSource:
   m_ObjectHideFlags: 0
@@ -25653,7 +25653,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrade: {fileID: 11400000, guid: f3c501072ea3acc4b8609402dfd290ea, type: 2}
-  popup: {fileID: 1351850246}
 --- !u!114 &2128098405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25899,7 +25898,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrade: {fileID: 11400000, guid: 949bd91368c3d664389ed302b0e00859, type: 2}
-  popup: {fileID: 1351850246}
 --- !u!114 &2128615981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26116,7 +26114,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2131043098}
-  m_LocalRotation: {x: -0, y: -0, z: 0.09865626, w: 0.9951216}
+  m_LocalRotation: {x: -0, y: -0, z: -0.055535384, w: 0.9984568}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -26124,7 +26122,7 @@ RectTransform:
   - {fileID: 1583892279}
   m_Father: {fileID: 1350429650}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 11.324}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -6.367}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 790.03, y: 469.41}

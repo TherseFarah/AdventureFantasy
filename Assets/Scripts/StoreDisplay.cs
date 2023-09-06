@@ -32,7 +32,7 @@ public class StoreDisplay : MonoBehaviour
 
         // Register the store with the StoreManager when it starts
         StoreManager.Instance.AddStore(store);
-        nextUnlockText.text = "Next Unlock:" + store.unlockLevels[0];
+        nextUnlockText.text = "Next Unlock: \b" + store.unlockLevels[0] + "\b";
     }
 
     // Update is called once per frame

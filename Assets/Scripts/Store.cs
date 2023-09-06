@@ -31,6 +31,9 @@ public class Store : ScriptableObject
 
     public int nextUnlockIndex = 0;
 
+    [HideInInspector]
+    Button managerButton;
+
 
     public void BuyStoreButton()
     {
@@ -60,6 +63,7 @@ public class Store : ScriptableObject
         {
             hasManager = true; // Set the flag to indicate the manager is purchased
             GameManager.Instance.AddBalance(-managerCost);
+            this.managerButton = managerButton;
             managerButton.gameObject.SetActive(false);
 
             // Automatically start the timer if the manager is purchased
@@ -69,6 +73,11 @@ public class Store : ScriptableObject
                 currentTimer = 0f;
             }
         }
+    }
+
+    public void UnapplyManager()
+    {
+        managerButton.gameObject.SetActive(true);
     }
 
     public void StoreClick()
@@ -96,6 +105,10 @@ public class Store : ScriptableObject
         if (ButtonController.buttonValue == -1)
         {
             GameManager.Instance.multiplier = GetMaxAffordableStores(baseBuyingPrice);
+            if(GameManager.Instance.multiplier == 0)
+            {
+                GameManager.Instance.multiplier = 1;
+            }
         }
         else if(ButtonController.buttonValue == 0)
         {

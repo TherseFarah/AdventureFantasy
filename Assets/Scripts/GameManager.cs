@@ -59,8 +59,11 @@ public class GameManager : MonoBehaviour
     public void AddBalance(double valueToAdd)
     {
         coins += valueToAdd;
-        PlayerStats.Instance.sessionEarnings += valueToAdd;
-        PlayerStats.Instance.totalEarnings += valueToAdd;
+        if (valueToAdd > 0)
+        {
+            PlayerStats.Instance.sessionEarnings += valueToAdd;
+            PlayerStats.Instance.totalEarnings += valueToAdd;
+        }
     }
 
     public bool CanBuy(double amount)

@@ -53,17 +53,15 @@ public class Prestige : MonoBehaviour
     {
         // Calculate the profit increase percentage based on the number of goblin investors
         double profitIncreasePercentage = goblinBonus * 0.02;
-
+        UpgradeManager.Instance.UnapplyAllUpgrades();
+        ManagersManager.Instance.UnapplyAllManagers();
         // Apply the profit increase to each store
         foreach (Store store in StoreManager.Instance.GetAllStores())
         {
             // Calculate the new profit amount after applying the goblin investor bonus
             double newProfit = store.inititalFirstStoreProfit * (1 + profitIncreasePercentage);
-            store.hasManager = false;
-
-            // TODO: Update the store's profit make it a method in the store to prestige it
+            store.ResetToInitialValues();
             store.firstStoreProfit = newProfit;
-            store.baseBuyingPrice = store.initialbaseBuyingPrice;
             store.nbrOfStores = string.Compare(store.nameOfStore, "Bread", StringComparison.OrdinalIgnoreCase) == 0 ? 1 : 0;
         }
         PlayerStats.Instance.sessionEarnings = 0;
