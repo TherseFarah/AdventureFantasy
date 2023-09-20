@@ -9,9 +9,9 @@ public class Store : ScriptableObject
     // Original initial values
     // REMOVE WHEN GAME IS READY
     public double initialbaseBuyingPrice;
-    private int initialNbrOfStore;
+    public int initialNbrOfStore;
     public double inititalFirstStoreProfit;
-    private float initialTimer;
+    public float initialTimer;
 
     public string nameOfStore;
     public double managerCost;
