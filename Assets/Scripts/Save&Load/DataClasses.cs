@@ -12,7 +12,6 @@ public class DataClasses : MonoBehaviour
     {
         public GameManagerData gameManagerData;
         public List<UpgradeData> upgradeData;
-        public List<ManagerData> managerData;
         public List<StoreData> storeData;
     }
 
@@ -30,12 +29,6 @@ public class DataClasses : MonoBehaviour
         public double upgradeValue;
         public double price;
         public bool isBought;
-    }
-
-    [System.Serializable]
-    public class ManagerData
-    {
-        public Store store;
     }
 
     [System.Serializable]

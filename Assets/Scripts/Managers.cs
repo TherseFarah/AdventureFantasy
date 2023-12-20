@@ -6,7 +6,7 @@ public class Managers : MonoBehaviour
 {
     public Store store;
 
-    private Button managerBuy;
+    public Button managerBuy;
 
 
     // Start is called before the first frame update

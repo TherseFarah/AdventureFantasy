@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager instance;
+    public static GameManager Instance { get; private set; }
     public double coins;
     public TextMeshProUGUI coinsText;
     public Canvas gameCanvas;
@@ -15,23 +15,21 @@ public class GameManager : MonoBehaviour
     public Canvas upgradeCanvas;
     public Canvas prestigeCanvas;
     public Canvas unlocksCanvas;
-    public int multiplier = 1;
+    public int multiplier;
 
     private void Awake()
     {
-        // Check if an instance of GameManager already exists
-        if (instance != null && instance != this)
+        if (Instance == null)
         {
-            // If an instance already exists, destroy this duplicate instance
-            Destroy(gameObject);
-            return;
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-
-        // If no instance exists, set this as the instance
-        instance = this;
-        // TODO: Ensure that the GameManager persists across scenes
-        // REMOVE WHEN GAME IS READY
-        //DontDestroyOnLoad(gameObject);
+        else
+        {
+            Destroy(gameObject);
+        }
+        coins = 0;
+        multiplier = 1;
     }
 
     // Start is called before the first frame update
@@ -42,18 +40,12 @@ public class GameManager : MonoBehaviour
         upgradeCanvas.enabled = false;
         prestigeCanvas.enabled = false;
         unlocksCanvas.enabled = false;
-        coins = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         coinsText.text = FormatMoneyValue(coins);
-    }
-
-    public static GameManager Instance
-    {
-        get { return instance; }
     }
 
     public void AddBalance(double valueToAdd)
@@ -110,5 +102,13 @@ public class GameManager : MonoBehaviour
         string formattedValue = moneyValue.ToString("F2") + suffixes[suffixIndex];
         return formattedValue;
     }
+
+    // Example: Call SaveGame when the player quits the game
+    void OnApplicationQuit()
+    {
+        SaveLoadManager.Instance.SaveGame();
+        Debug.Log("Game saved on exit");
+    }
+
 
 }

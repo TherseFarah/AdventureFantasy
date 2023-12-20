@@ -6,7 +6,7 @@ public class StoreManager : MonoBehaviour
     private static StoreManager instance;
     public static StoreManager Instance => instance;
 
-    private List<Store> allStores = new List<Store>();
+    public List<Store> allStores = new List<Store>();
 
     private void Awake()
     {

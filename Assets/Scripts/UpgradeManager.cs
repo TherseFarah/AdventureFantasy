@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static DataClasses;
 
 public class UpgradeManager : MonoBehaviour
 {

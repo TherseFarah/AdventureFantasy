@@ -14,19 +14,16 @@ public class Upgrades : ScriptableObject
 
     public void ApplyUpgrade(Button upgradesButton)
     {
-        if (!isBought)
+        if (GameManager.Instance.CanBuy(price))
         {
-            if (GameManager.Instance.CanBuy(price))
+            foreach(Store store in stores)
             {
-                foreach(Store store in stores)
-                {
-                    store.firstStoreProfit *= upgradeValue;
-                }
-                GameManager.Instance.AddBalance(-price);
-                this.upgradesButton = upgradesButton;
-                upgradesButton.gameObject.SetActive(false);
-                isBought = true;
+               store.firstStoreProfit *= upgradeValue;
             }
+            GameManager.Instance.AddBalance(-price);
+            this.upgradesButton = upgradesButton;
+            upgradesButton.gameObject.SetActive(false);
+            isBought = true;
         }
     }
 
