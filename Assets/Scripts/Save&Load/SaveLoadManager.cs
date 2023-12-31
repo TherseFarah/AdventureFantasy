@@ -12,9 +12,7 @@ public class SaveLoadManager : MonoBehaviour
 {
     public static SaveLoadManager Instance { get; private set; }
 
-    private string mPersistentDataPath;
-    private string mSaveDataPath = "saveData.dat";
-    string fullPath;
+    private string mSaveDataPath = "saveData";
 
     private void Awake()
     {
@@ -29,31 +27,8 @@ public class SaveLoadManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-#if UNITY_WEBGL
-        mPersistentDataPath = "idbfs/SaveGame";
-#else
-        mPersistentDataPath = Application.persistentDataPath;
-#endif
+        LoadGame();
 
-        // Ensure the directory exists
-        if (!Directory.Exists(mPersistentDataPath))
-        {
-            Directory.CreateDirectory(mPersistentDataPath);
-        }
-
-        fullPath = Path.Combine(mPersistentDataPath, mSaveDataPath);
-
-
-        if (File.Exists(fullPath))
-        {
-            LoadGame();
-        }
-        else
-        {
-            FileStream fs = File.Create(fullPath);
-            fs.Close();
-            Debug.Log("No save data found in " + fullPath);
-        }
     }
 
     private void Start()
@@ -77,7 +52,7 @@ public class SaveLoadManager : MonoBehaviour
 
     public void SaveGame()
     {
-        Debug.Log("We are saving the game in path " + fullPath);
+        Debug.Log("We are saving the game");
         SaveData saveData = new SaveData
         {
             gameManagerData = new GameManagerData
@@ -127,44 +102,32 @@ public class SaveLoadManager : MonoBehaviour
 
 
         string json = JsonUtility.ToJson(saveData);
-        //File.WriteAllText(fullPath, json);
-        StartCoroutine(SaveGameUsingWWW(json));
-    }
-
-    private IEnumerator SaveGameUsingWWW(string json)
-    {
-
-        // Use UnityWebRequest to save the data
-        byte[] myData = System.Text.Encoding.UTF8.GetBytes(json);
-        using (UnityWebRequest www = UnityWebRequest.Put(fullPath, myData))
-        {
-            yield return www.SendWebRequest();
-
-            if (www.result != UnityWebRequest.Result.Success)
-            {
-                Debug.LogError("Failed to save game data: " + www.error);
-            }
-            else
-            {
-                Debug.Log("Game saved successfully.");
-            }
-        }
+        PlayerPrefs.SetString(mSaveDataPath, json);
+        PlayerPrefs.Save();
     }
 
     public void LoadGame()
     {
-        string json = File.ReadAllText(fullPath);
-        SaveData saveData = JsonUtility.FromJson<SaveData>(json);
+        if (PlayerPrefs.HasKey(mSaveDataPath))
+        {
+            string json = PlayerPrefs.GetString(mSaveDataPath);
+            SaveData saveData = JsonUtility.FromJson<SaveData>(json);
 
-        // Load game data from saveData and update your game's objects
-        GameManager.Instance.coins = saveData.gameManagerData.coins;
-        GameManager.Instance.multiplier = saveData.gameManagerData.multiplier;
+            // Load game data from saveData and update your game's objects
+            GameManager.Instance.coins = saveData.gameManagerData.coins;
+            GameManager.Instance.multiplier = saveData.gameManagerData.multiplier;
 
-        // Populate upgrades after they have been added in Start method
-        StartCoroutine(LoadUpgrades(saveData.upgradeData));
-        // Populate stores
-        StartCoroutine(LoadStores(saveData.storeData));
+            // Populate upgrades after they have been added in Start method
+            StartCoroutine(LoadUpgrades(saveData.upgradeData));
+            // Populate stores
+            StartCoroutine(LoadStores(saveData.storeData));
+        }
+        else
+        {
+            Debug.LogWarning($"No save data found for key {mSaveDataPath}");
+        }
     }
+
 
     private IEnumerator LoadStores(List<StoreData> storeDataList)
     {
