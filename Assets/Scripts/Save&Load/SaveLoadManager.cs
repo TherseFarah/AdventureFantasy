@@ -5,14 +5,20 @@ using static DataClasses;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine.UI;
+using System.Net.NetworkInformation;
+using UnityEngine.Networking;
 
 public class SaveLoadManager : MonoBehaviour
 {
-    private string savePath;
     public static SaveLoadManager Instance { get; private set; }
+
+    private string mPersistentDataPath;
+    private string mSaveDataPath = "saveData.dat";
+    string fullPath;
 
     private void Awake()
     {
+
         if (Instance == null)
         {
             Instance = this;
@@ -23,20 +29,55 @@ public class SaveLoadManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        savePath = Path.Combine(Application.persistentDataPath, "saveData.json");
-        if (File.Exists(savePath))
+#if UNITY_WEBGL
+        mPersistentDataPath = "idbfs/SaveGame";
+#else
+        mPersistentDataPath = Application.persistentDataPath;
+#endif
+
+        // Ensure the directory exists
+        if (!Directory.Exists(mPersistentDataPath))
+        {
+            Directory.CreateDirectory(mPersistentDataPath);
+        }
+
+        fullPath = Path.Combine(mPersistentDataPath, mSaveDataPath);
+
+
+        if (File.Exists(fullPath))
         {
             LoadGame();
         }
         else
         {
-            Debug.Log("No save data found.");
+            FileStream fs = File.Create(fullPath);
+            fs.Close();
+            Debug.Log("No save data found in " + fullPath);
+        }
+    }
+
+    private void Start()
+    {
+        // Start the coroutine to save the game every 5 seconds
+        StartCoroutine(SaveGamePeriodically());
+    }
+
+    private IEnumerator SaveGamePeriodically()
+    {
+        while (true)
+        {
+            // Save the game
+            SaveGame();
+            Debug.Log("Game saved.");
+
+            // Wait for 5 seconds before the next save
+            yield return new WaitForSeconds(5f);
         }
     }
 
     public void SaveGame()
     {
-        Debug.Log("We are saving the game in path" + savePath);
+        Debug.Log("We are saving the game in path " + fullPath);
         SaveData saveData = new SaveData
         {
             gameManagerData = new GameManagerData
@@ -86,12 +127,33 @@ public class SaveLoadManager : MonoBehaviour
 
 
         string json = JsonUtility.ToJson(saveData);
-        File.WriteAllText(savePath, json);
+        //File.WriteAllText(fullPath, json);
+        StartCoroutine(SaveGameUsingWWW(json));
+    }
+
+    private IEnumerator SaveGameUsingWWW(string json)
+    {
+
+        // Use UnityWebRequest to save the data
+        byte[] myData = System.Text.Encoding.UTF8.GetBytes(json);
+        using (UnityWebRequest www = UnityWebRequest.Put(fullPath, myData))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError("Failed to save game data: " + www.error);
+            }
+            else
+            {
+                Debug.Log("Game saved successfully.");
+            }
+        }
     }
 
     public void LoadGame()
     {
-        string json = File.ReadAllText(savePath);
+        string json = File.ReadAllText(fullPath);
         SaveData saveData = JsonUtility.FromJson<SaveData>(json);
 
         // Load game data from saveData and update your game's objects
