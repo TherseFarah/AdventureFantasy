@@ -19,8 +19,8 @@
    - [ ] Display it in menu near updgrades and manager
 
 4. Figure out offline gains
-   - [ ] Make sure it is not hackable genre fais le olline
-   - [ ] Load and save system
+   - [X] Load and save system draft
+   - [ ] Fix load and save for next shops
    - [ ] ID per user
 
 5. Add art
@@ -41,5 +41,5 @@
    - [ ] Separate the scripts
 
 9. Add Sounds and Music
-
+   - [ ] Audio not muting in WebGL to review
 10.  Fix UI
