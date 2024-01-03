@@ -15,6 +15,7 @@ public class DataClasses : MonoBehaviour
         public List<StoreData> storeData;
         public double totalEarnings;
         public double sessionEarnings;
+        public double goblinInvestors;
     }
 
     [System.Serializable]

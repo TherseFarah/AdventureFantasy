@@ -8,8 +8,8 @@ using UnityEngine.UI;
 
 public class SaveLoadManager : MonoBehaviour
 {
-    private string savePath;
     public static SaveLoadManager Instance { get; private set; }
+    private string mSaveDataPath = "saveData";
 
     private void Awake()
     {
@@ -23,20 +23,12 @@ public class SaveLoadManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        savePath = Path.Combine(Application.persistentDataPath, "saveData.json");
-        if (File.Exists(savePath))
-        {
-            LoadGame();
-        }
-        else
-        {
-            Debug.Log("No save data found.");
-        }
+        LoadGame();
     }
 
     public void SaveGame()
     {
-        Debug.Log("We are saving the game in path" + savePath);
+        Debug.Log("We are saving the game");
         SaveData saveData = new SaveData
         {
             gameManagerData = new GameManagerData
@@ -48,6 +40,7 @@ public class SaveLoadManager : MonoBehaviour
             storeData = new List<StoreData>(),
             totalEarnings = PlayerStats.Instance.totalEarnings,
             sessionEarnings = PlayerStats.Instance.sessionEarnings,
+            goblinInvestors = PlayerStats.Instance.goblinInvestors,
         };
 
         // Populate UpgradeData
@@ -88,26 +81,35 @@ public class SaveLoadManager : MonoBehaviour
 
 
         string json = JsonUtility.ToJson(saveData);
-        File.WriteAllText(savePath, json);
+        PlayerPrefs.SetString(mSaveDataPath, json);
+        PlayerPrefs.Save();
     }
 
     public void LoadGame()
     {
-        string json = File.ReadAllText(savePath);
-        SaveData saveData = JsonUtility.FromJson<SaveData>(json);
+        if (PlayerPrefs.HasKey(mSaveDataPath))
+        {
+            string json = PlayerPrefs.GetString(mSaveDataPath);
+            SaveData saveData = JsonUtility.FromJson<SaveData>(json);
 
-        // Load game data from saveData and update your game's objects
-        GameManager.Instance.coins = saveData.gameManagerData.coins;
-        // TODO: ADD TOTAL EARNINGS
-        GameManager.Instance.multiplier = saveData.gameManagerData.multiplier;
-        // Load totalEarnings and sessionEarnings
-        PlayerStats.Instance.totalEarnings = saveData.totalEarnings;
-        PlayerStats.Instance.sessionEarnings = saveData.sessionEarnings;
+            // Load game data from saveData and update your game's objects
+            GameManager.Instance.coins = saveData.gameManagerData.coins;
+            // TODO: ADD TOTAL EARNINGS
+            GameManager.Instance.multiplier = saveData.gameManagerData.multiplier;
+            // Load totalEarnings and sessionEarnings
+            PlayerStats.Instance.totalEarnings = saveData.totalEarnings;
+            PlayerStats.Instance.sessionEarnings = saveData.sessionEarnings;
+            PlayerStats.Instance.goblinInvestors = saveData.goblinInvestors;
 
-        // Populate upgrades after they have been added in Start method
-        StartCoroutine(LoadUpgrades(saveData.upgradeData));
-        // Populate stores
-        StartCoroutine(LoadStores(saveData.storeData));
+            // Populate upgrades after they have been added in Start method
+            StartCoroutine(LoadUpgrades(saveData.upgradeData));
+            // Populate stores
+            StartCoroutine(LoadStores(saveData.storeData));
+        }
+        else
+        {
+            Debug.LogWarning($"No save data found for key {mSaveDataPath}");
+        }
     }
 
     private IEnumerator LoadStores(List<StoreData> storeDataList)
