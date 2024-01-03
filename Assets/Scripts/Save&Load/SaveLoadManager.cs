@@ -45,7 +45,9 @@ public class SaveLoadManager : MonoBehaviour
                 multiplier = GameManager.Instance.multiplier,
             },
             upgradeData = new List<UpgradeData>(),
-            storeData = new List<StoreData>()
+            storeData = new List<StoreData>(),
+            totalEarnings = PlayerStats.Instance.totalEarnings,
+            sessionEarnings = PlayerStats.Instance.sessionEarnings,
         };
 
         // Populate UpgradeData
@@ -96,7 +98,11 @@ public class SaveLoadManager : MonoBehaviour
 
         // Load game data from saveData and update your game's objects
         GameManager.Instance.coins = saveData.gameManagerData.coins;
+        // TODO: ADD TOTAL EARNINGS
         GameManager.Instance.multiplier = saveData.gameManagerData.multiplier;
+        // Load totalEarnings and sessionEarnings
+        PlayerStats.Instance.totalEarnings = saveData.totalEarnings;
+        PlayerStats.Instance.sessionEarnings = saveData.sessionEarnings;
 
         // Populate upgrades after they have been added in Start method
         StartCoroutine(LoadUpgrades(saveData.upgradeData));
@@ -125,6 +131,23 @@ public class SaveLoadManager : MonoBehaviour
                 store.baseBuyingPrice = storeData.baseBuyingPrice;
                 store.priceIncreaseModifier = storeData.priceIncreaseModifier;
                 store.nbrOfStores = storeData.nbrOfStores;
+                if(store.nbrOfStores>0)
+                {
+                    BuyStoreButton[] buyStoreButtons = GameObject.FindObjectsOfType<BuyStoreButton>();
+
+                    foreach (BuyStoreButton buyStoreButton in buyStoreButtons)
+                    {
+                        if (buyStoreButton.store == store)
+                        {
+                            // Enable the buyStoreButton
+                            buyStoreButton.buyStoreButton.gameObject.SetActive(false);
+                            buyStoreButton.buyStoreButton.interactable = false;
+                            buyStoreButton.storeCanvas.gameObject.SetActive(true);
+                            buyStoreButton.storeCanvas.GetComponent<CanvasGroup>().enabled = false;
+                            break;
+                        }
+                    }
+                }
                 store.firstStoreProfit = storeData.firstStoreProfit;
                 store.hasManager = storeData.hasManager;
                 store.unlockLevels = storeData.unlockLevels;

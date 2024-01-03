@@ -13,6 +13,8 @@ public class DataClasses : MonoBehaviour
         public GameManagerData gameManagerData;
         public List<UpgradeData> upgradeData;
         public List<StoreData> storeData;
+        public double totalEarnings;
+        public double sessionEarnings;
     }
 
     [System.Serializable]
