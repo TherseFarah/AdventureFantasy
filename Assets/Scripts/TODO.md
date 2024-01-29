@@ -6,8 +6,8 @@
    - [X] Show this in the UI
    - [X] Add x10,x100 buttons
    - [X] Debug max button
-   - [ ] Add next button
-   - [ ] Add glow when reach continuous progress slider and make money x2 more not time faster.
+   - [X] Add next button
+   - [X] Add glow when reach continuous progress slider and make money x2 more not time faster.
 
 2. Make an upgrades menu next to managers
    - [X] Add some upgrades and make a script to handle it or a function
