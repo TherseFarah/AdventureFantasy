@@ -20,6 +20,15 @@ public class StoreDisplay : MonoBehaviour
     public Slider progressSlider;
 
     bool isInteractable;
+    
+    void Awake()
+    {
+        // Register the store with the StoreManager when it starts
+        StoreManager.Instance.AddStore(store);
+
+        // Store the initial values when the game starts
+        store.StoreInitialValues();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -29,10 +38,8 @@ public class StoreDisplay : MonoBehaviour
         clickButton.onClick.AddListener(() => store.StoreClick());
 
         isInteractable = store.nbrOfStores == 0 ? false : true;
-
-        // Register the store with the StoreManager when it starts
-        StoreManager.Instance.AddStore(store);
-        nextUnlockText.text = "Next Unlock: \b" + store.unlockLevels[0] + "\b";
+       
+        nextUnlockText.text = "Next Unlock: \b" + store.unlockLevels[store.nextUnlockIndex] + "\b";
     }
 
     // Update is called once per frame
@@ -140,13 +147,6 @@ public class StoreDisplay : MonoBehaviour
         }
         profitFromStoreText.text = GameManager.Instance.FormatMoneyValue(store.nbrOfStores * store.firstStoreProfit);
         storeXLevelText.text = "x" + GameManager.Instance.multiplier;
-    }
-
-    // REMOVE LATER
-    private void Awake()
-    {
-        // Store the initial values when the game starts
-        store.StoreInitialValues();
     }
 
     private void OnDestroy()
