@@ -6822,7 +6822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundMusicButton: {fileID: 1307084383}
-  audioListener: {fileID: 519420029}
+  audioSource: {fileID: 920249130}
   audioOnSprite: {fileID: 21300000, guid: 66fd78659f261d20692b28a637838d39, type: 3}
   audioOffSprite: {fileID: 21300000, guid: 931321f52485d53f1b3362104a8c078d, type: 3}
 --- !u!1 &533368122

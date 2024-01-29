@@ -23,9 +23,6 @@ public class StoreDisplay : MonoBehaviour
     
     void Awake()
     {
-        // Register the store with the StoreManager when it starts
-        StoreManager.Instance.AddStore(store);
-
         // Store the initial values when the game starts
         store.StoreInitialValues();
     }
@@ -38,7 +35,11 @@ public class StoreDisplay : MonoBehaviour
         clickButton.onClick.AddListener(() => store.StoreClick());
 
         isInteractable = store.nbrOfStores == 0 ? false : true;
-       
+
+        // Register the store with the StoreManager when it starts
+        StoreManager.Instance.AddStore(store);
+
+
         nextUnlockText.text = "Next Unlock: \b" + store.unlockLevels[store.nextUnlockIndex] + "\b";
     }
 
