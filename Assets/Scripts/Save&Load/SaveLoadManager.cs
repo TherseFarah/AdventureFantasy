@@ -26,6 +26,25 @@ public class SaveLoadManager : MonoBehaviour
         LoadGame();
     }
 
+    private void Start()
+    {
+        // Start the coroutine to save the game every 5 seconds
+        StartCoroutine(SaveGamePeriodically());
+    }
+
+    private IEnumerator SaveGamePeriodically()
+    {
+        while (true)
+        {
+            // Save the game
+            SaveGame();
+            Debug.Log("Game saved.");
+
+            // Wait for 5 seconds before the next save
+            yield return new WaitForSeconds(5f);
+        }
+    }
+
     public void SaveGame()
     {
         Debug.Log("We are saving the game");
